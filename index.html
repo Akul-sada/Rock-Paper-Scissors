@@ -1,0 +1,51 @@
+<script>
+    
+let points =[0,0];
+function getComputerChoice(){
+    const obj ={
+        "rock":1,
+        "paper":2,
+        "scissors":3
+    };
+    const value = Math.trunc( Math.random()*3 + 1);
+    return Object.keys(obj).find(key=> obj[key]===value);
+}
+const playerSelection = [];
+const computerSelection = [];
+
+
+function playRound() {
+  // your code here!     
+const player = prompt(`Choose any of these "Rock" , "Paper", "Scissors"...`);
+console.log(getComputerChoice());
+  let playerChoice = player.toLowerCase();
+  let computerChoice = getComputerChoice();
+  playerSelection.push(playerChoice);
+  computerSelection.push(computerChoice);
+}
+for(let i=0;i<4;i++){
+      playRound();
+}
+
+for(let i=0;i<playerSelection.length;i++){
+    let player = playerSelection[i];
+    let computer = playerSelection[i];
+
+    let condition1 = player==='rock' && computer ==='scissors';
+    let condition2 = player==='paper' && computer ==='rock';
+    let condition3 = player==='scissors' && computer ==='paper';
+    
+    if(condition1) points[0]++;
+    else if(!condition1) points[1]++;
+
+    if(condition2) points[0]++;
+    else if(!(player==='paper' && computer ==='rock')) points[1]++;
+
+    if(condition3) points[0]++;
+    else if(!condition3) points[1]++;
+
+}
+if(points[0]>points[1]) console.log('You Won!');
+else console.log('You Lose!');
+
+</script>
